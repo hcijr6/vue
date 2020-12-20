@@ -1,21 +1,25 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container-fluid">
+    <app-menu></app-menu>
+    <products-table></products-table>
+    <product-form></product-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppMenu from './components/AppMenu.vue'
+import ProductsTable from './components/ProductsTable.vue'
+import ProductForm from './components/ProductForm.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AppMenu,
+    ProductsTable,
+    ProductForm
   }
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
