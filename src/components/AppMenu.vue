@@ -7,17 +7,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Productos <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/">Productos <span class="sr-only">(current)</span></router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">AñadirProducto</a>
+                <router-link class="nav-link" to="/form">AñadirProducto</router-link>
             </li>
             </ul>
         </div>
     </nav>
     <header>
-        <h1>Almacén central - HERNAN SL</h1>
     </header>
 </div>
 </template>

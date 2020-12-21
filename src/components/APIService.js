@@ -16,12 +16,11 @@ export default {
     return axios.post(baseURL+'/productos', newProducto)
   },
 
-  toogleDone(producto) {
-    return axios.put(baseURL+'/productos/'+producto.id, {
-        id: producto.id,
-        name: producto.name,
-        price: producto.price,
-        units: producto.units
-    })
+  find(id){
+    return axios.get(baseURL+'/productos/'+id)
+  },
+
+  put(producto) {
+    return axios.put(baseURL+'/productos/'+producto.id, producto)
   },
 }

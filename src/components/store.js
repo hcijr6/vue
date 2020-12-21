@@ -20,5 +20,4 @@ export const store = {
       .then(()=>this.getTodos())
       .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
   }
-
 }
