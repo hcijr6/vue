@@ -19,5 +19,10 @@ export const store = {
     APIService.add(prod)
       .then(()=>this.getTodos())
       .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
+  },
+  edit(prod){
+    APIService.put(prod)
+      .then(()=>this.getTodos())
+      .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
   }
 }

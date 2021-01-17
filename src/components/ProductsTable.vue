@@ -23,7 +23,7 @@
                 <p v-else>No hay tareas que mostrar</p>
 
             </table>
-            <p class="lead float-right">Importe total del almacén: <strong id="total">0.00 €</strong></p>
+            <p class="lead float-right">Importe total del almacén: <strong id="total">{{totalImport}}€</strong></p>
         </div>
     </div>
 </template>
@@ -42,6 +42,11 @@ export default{
     },
     mounted() {
         store.getTodos();
+    },
+    computed:{
+        totalImport(){
+            return this.productos.reduce((total,actual)=> total + Number(actual.price)*Number(actual.units),0)
+        }
     }
 } 
 </script>

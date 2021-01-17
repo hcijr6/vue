@@ -3,22 +3,18 @@
     <app-menu></app-menu>
     <router-view></router-view>
 
-    <!-- <products-table></products-table>
-    <product-form></product-form> -->
   </div>
 </template>
 
 <script>
 import AppMenu from './components/AppMenu.vue'
-// import ProductsTable from './components/ProductsTable.vue'
-// import ProductForm from './components/ProductForm.vue'
+
 
 export default {
   name: 'App',
   components: {
     AppMenu,
-    // ProductsTable,
-    // ProductForm
+
   }
 }
 </script>

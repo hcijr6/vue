@@ -5,7 +5,7 @@
         <div class=" card-body">
                 <div v-if="id">
                     <label>Id:</label>
-                    <input type="number" v-model="producto.id" min="0" required>
+                    <input type="number" v-model="producto.id" min="0" disabled>
                 </div>
                 <div class="form-group">
                     <label>Nombre:</label>
@@ -19,7 +19,7 @@
                     <label>Unidades:</label>
                     <input type="number" v-model="producto.units" min="1" max="100" required>
                 </div>
-                <button @click="add" class="btn btn-default btn-primary">Añadir</button>
+                <button @click="add" class="btn btn-default btn-primary">{{ producto.id?'Editar':'Añadir'}}</button>
                 <button @click="reset" class="btn btn-secondary">Reset</button>
         </div>
     </div>
@@ -33,25 +33,21 @@ export default {
     props:['id'],
     data() {
         return {
-            producto:{}
+            producto:{},
+            boton:"",
         }
     },
     methods: {
         add(){
+            alert('ESPAÑA');
             if(!this.id){
-                if(this.producto.name && this.Precio && this.Unidades){
                 store.add(this.producto);
-                this.reset();
+                this.$router.push('/');
+            }    
+            else{
+                store.edit(this.producto);
                 this.$router.push('/');
             }
-            else{
-                APIService.put(this.producto)
-                .then(response=> this.producto=response.data)
-                .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
-                store.getTodos();
-            }
-        }
-            
         },
         reset(){
             this.producto={};
@@ -64,9 +60,8 @@ export default {
             this.producto=response.data)
         .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
         }
-        
     }
- }
+}
 
 </script>
 
