@@ -12,9 +12,9 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody v-if="productos.length">
+                <tbody v-if="this.productos.length">
                     <product-item 
-                        v-for="(item,index) in productos" 
+                        v-for="(item,index) in this.productos" 
                         :key="item.id"
                         :producto="item"
                         :indice="index">
@@ -27,28 +27,31 @@
         </div>
     </div>
 </template>
-
 <script>
 import ProductItem from './ProductItem.vue'
-import { store } from './store.js';
+
 export default{
     components:{
         ProductItem
     },
     data() {
         return {
-            productos: store.state.productos,
+            
         }
     },
-    mounted() {
-        store.getTodos();
-    },
     computed:{
+        productos () {
+            this.$store.dispatch('loadData');
+            return this.$store.state.productos;
+        },
+        loading() {
+            return this.$store.state.loading
+        },
         totalImport(){
             return this.productos.reduce((total,actual)=> total + Number(actual.price)*Number(actual.units),0)
         }
     }
-} 
+}
 </script>
 
 <style>

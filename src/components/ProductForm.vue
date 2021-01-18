@@ -26,9 +26,6 @@
 </div>
 </template>
 <script>
-import { store } from './store.js';
-import APIService from './APIService.js'
-
 export default {
     props:['id'],
     data() {
@@ -39,14 +36,21 @@ export default {
     },
     methods: {
         add(){
-            alert('ESPAÑA');
             if(!this.id){
-                store.add(this.producto);
-                this.$router.push('/');
-            }    
+                this.$store.dispatch('addItem', this.producto)
+                .then(() => {
+                    alert('El producto se ha añadido correctamente')
+                    this.$router.push('/')
+                })
+                .catch((err) => alert('Error: '+err.message || err))
+            }
             else{
-                store.edit(this.producto);
-                this.$router.push('/');
+                this.$store.dispatch('editItem', this.producto)
+                .then(() => {
+                    alert('El producto se ha editado correctamente')
+                    this.$router.push('/')
+                })
+                .catch((err) => alert('Error: '+err.message || err))
             }
         },
         reset(){
@@ -55,10 +59,9 @@ export default {
     },
     mounted(){
         if(this.id){
-            APIService.find(this.id)
-        .then(response=>
-            this.producto=response.data)
-        .catch(error=>console.error('Error: '+(error.statusText || error.message || error)))
+            this.$store.dispatch('findItem',this.id)
+        .then(response=> this.producto=response)
+        .catch(error=>alert('Error: '+(error.statusText || error.message || error)))
         }
     }
 }

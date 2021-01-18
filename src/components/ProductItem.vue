@@ -16,13 +16,18 @@
 </template>
 
 <script>
-import { store } from './store.js';
 
 export default{
   props:['producto'],
   methods: {
     removeProd(id){
-      store.delete(id);
+      if(confirm('estás seguro?')){
+          this.$store.dispatch('delItem', id)
+                .then(() => {
+                    alert('El producto se ha eliminado correctamente')
+                })
+               .catch((err) => alert('Error: '+err.message || err))
+      }
     },
     editProd(){
       this.$router.push('/edit/'+this.producto.id)
